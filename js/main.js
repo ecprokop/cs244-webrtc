@@ -1,7 +1,7 @@
 'use strict';
 
 var isChannelReady = false;
-var isInitiator = false;
+var isServer = false;
 var isStarted = false;
 var localStream;
 var pc;
@@ -39,7 +39,7 @@ if (room !== '') {
 
 socket.on('created', function(room) {
     console.log('Created room ' + room);
-    isInitiator = true;
+    isServer = true;
 });
 
 socket.on('full', function(room) {
@@ -63,6 +63,50 @@ socket.on('log', function(array) {
 
 ////////////////////////////////////////////////
 
+// Server must join room first. Then client connects, and sends server video.
+// should only send if !isServer
+
+// Sender side:
+// after a 'successful call', pdStream will no longer be undefined
+
+// serv
+function maybeCreateStream() {
+    if (!isChannelReady) {
+        return;
+    }
+    if (pdStream) {
+        return;
+    }
+    if (isServer) {
+        return;
+    }
+    if (localVideo.captureStream) {
+        pdStream = localVideo.captureStream();
+        console.log('Captured stream from leftVideo with captureStream',
+            stream);
+        localVideo.play();
+        maybeStart();
+    } else if (localVideo.mozCaptureStream) {
+        pdStream = localVideo.mozCaptureStream();
+        console.log('Captured stream from leftVideo with mozCaptureStream()',
+            stream);
+        localVideo.play();
+        maybeStart();
+    } else {
+        console.log('captureStream() not supported');
+    }
+}
+
+// Video tag capture must be set up after video tracks are enumerated.
+localVideo.oncanplay = maybeCreateStream;
+if (localVideo.readyState >= 3) { // HAVE_FUTURE_DATA
+    // Video is already ready to play, call maybeCreateStream in case oncanplay
+    // fired before we registered the event handler.
+    maybeCreateStream();
+}
+
+////////////////////////////////////////////////
+
 function sendMessage(message) {
     console.log('Client sending message: ', message);
     socket.emit('message', message);
@@ -74,7 +118,7 @@ socket.on('message', function(message) {
     if (message === 'got user media') {
         maybeStart();
     } else if (message.type === 'offer') {
-        if (!isInitiator && !isStarted) {
+        if (!isServer && !isStarted) {
             maybeStart();
         }
         pc.setRemoteDescription(new RTCSessionDescription(message));
@@ -92,37 +136,40 @@ socket.on('message', function(message) {
     }
 });
 
-// socket.on('ready', function() {
-//     console.log('Ready');
-//     maybeStart();
-// });
+socket.on('ready', function() {
+    console.log('Ready');
+    if (!isServer) {
+        maybeCreateStream();
+    }
+    maybeStart();
+});
 
 ////////////////////////////////////////////////////
 
-navigator.mediaDevices.getUserMedia({
-    audio: false,
-    video: true
-})
-    .then(gotStream)
-    .catch(function(e) {
-        alert('getUserMedia() error: ' + e.name);
-    });
+// navigator.mediaDevices.getUserMedia({
+//     audio: false,
+//     video: true
+// })
+//     .then(gotStream)
+//     .catch(function(e) {
+//         alert('getUserMedia() error: ' + e.name);
+//     });
 
-function gotStream(stream) {
-    console.log('Adding local stream.');
-    localStream = stream;
-    localVideo.srcObject = stream;
-    sendMessage('got user media');
-    if (isInitiator) {
-        maybeStart();
-    }
-}
+// function gotStream(stream) {
+//     console.log('Adding local stream.');
+//     localStream = stream;
+//     localVideo.srcObject = stream;
+//     sendMessage('got user media');
+//     if (isServer) {
+//         maybeStart();
+//     }
+// }
 
-var constraints = {
-    video: true
-};
-
-console.log('Getting user media with constraints', constraints);
+// var constraints = {
+//     video: true
+// };
+//
+// console.log('Getting user media with constraints', constraints);
 
 if (location.hostname !== 'localhost') {
     requestTurn(
@@ -131,15 +178,22 @@ if (location.hostname !== 'localhost') {
 }
 
 function maybeStart() {
-    console.log('>>>>>>> maybeStart() ', isStarted, localStream, isChannelReady);
-    if (!isStarted && typeof localStream !== 'undefined' && isChannelReady) {
-        console.log('>>>>>> creating peer connection');
-        createPeerConnection();
-        isStarted = true;
-        console.log('isInitiator', isInitiator);
-        if (isInitiator) {
-            pc.addStream(localStream);
+    console.log('>>>>>>> maybeStart() ', isStarted, pdStream, isChannelReady);
+
+    // if you didn't initiate the room, you want to send b/c you're the client
+    if (!isServer) {
+        if (!isStarted && typeof pdStream !== 'undefined' && isChannelReady) {
+            console.log('>>>>>> creating peer connection');
+            createPeerConnection();
+            isStarted = true;
+            console.log('isServer', isServer);
+            pc.addStream(pdStream);
             doCall();
+        }
+    } else {
+        if (!isStarted && isChannelReady) {
+            createPeerConnection();
+            isStarted = true
         }
     }
 }
@@ -235,7 +289,7 @@ function requestTurn(turnURL) {
 }
 
 function handleRemoteStreamAdded(event) {
-    if (!isInitiator) {
+    if (isServer) {
         console.log('Remote stream added.');
         remoteStream = event.stream;
         remoteVideo.srcObject = remoteStream;
@@ -255,7 +309,7 @@ function hangup() {
 function handleRemoteHangup() {
     console.log('Session terminated.');
     stop();
-    isInitiator = false;
+    isServer = false;
 }
 
 function stop() {
