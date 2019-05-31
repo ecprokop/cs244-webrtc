@@ -83,13 +83,13 @@ function maybeCreateStream() {
     if (localVideo.captureStream) {
         pdStream = localVideo.captureStream();
         console.log('Captured stream from leftVideo with captureStream',
-            stream);
+            pdStream);
         localVideo.play();
         maybeStart();
     } else if (localVideo.mozCaptureStream) {
         pdStream = localVideo.mozCaptureStream();
         console.log('Captured stream from leftVideo with mozCaptureStream()',
-            stream);
+            pdStream);
         localVideo.play();
         maybeStart();
     } else {
@@ -188,10 +188,12 @@ function maybeStart() {
             isStarted = true;
             console.log('isServer', isServer);
             pc.addStream(pdStream);
+            console.log('client calling')
             doCall();
         }
     } else {
         if (!isStarted && isChannelReady) {
+            console.log('>>>>>> creating peer connection');
             createPeerConnection();
             isStarted = true
         }
