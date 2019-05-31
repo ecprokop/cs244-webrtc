@@ -240,8 +240,8 @@ function handleCreateOfferError(event) {
 
 function doCall() {
     console.log('Sending offer to peer');
-    const videoTracks = stream.getVideoTracks();
-    videoTracks.forEach(track => pc.addTrack(track, stream));
+    const videoTracks = pdStream.getVideoTracks();
+    videoTracks.forEach(track => pc.addTrack(track, pdStream));
     if (videoTracks.length > 0) {
         console.log(`Using video device: ${videoTracks[0].label}`);
     }
