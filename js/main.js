@@ -8,6 +8,8 @@ var pc;
 var remoteStream;
 var turnReady;
 var pdStream;
+var chunks = [];
+var mediaRecorder;
 
 var pcConfig = {
     'iceServers': [{
@@ -40,7 +42,7 @@ if (room !== '') {
 socket.on('created', function(room) {
     console.log('Created room ' + room);
     isServer = true;
-    document.getElementById('whoami').innerHTML = "Server";
+    document.getElementById('whoami').innerHTML = 'server';
     var elem = document.getElementById('senderVideo');
     elem.parentNode.removeChild(elem);
 });
@@ -210,6 +212,42 @@ window.onbeforeunload = function() {
     sendMessage('bye');
 };
 
+function download() {
+    const blob = new Blob(chunks, {type: 'video/mp4'});
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = 'test.mp4';
+    document.body.appendChild(a);
+    a.click();
+}
+
+function handleDataAvailable(event) {
+    if (event.data && event.data.size > 0) {
+        chunks.push(event.data);
+    }
+}
+
+function handleStop(event) {
+    console.log('Recorder stopped: ', event);
+    download();
+}
+
+function startRecording() {
+    var options = {mimeType: 'video/mp4'};
+    chunks = [];
+    try {
+        mediaRecorder = new MediaRecorder(remoteStream, options);
+    } catch (e0) {
+        console.log('Unable to create MediaRecorder with options Object: ', e0);
+    }
+    console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
+    mediaRecorder.onstop = handleStop;
+    mediaRecorder.ondataavailable = handleDataAvailable;
+    mediaRecorder.start(5000)
+}
+
 /////////////////////////////////////////////////////////
 
 function createPeerConnection() {
@@ -306,6 +344,7 @@ function handleRemoteStreamAdded(event) {
         console.log('Remote stream added.');
         remoteStream = event.stream;
         remoteVideo.srcObject = remoteStream;
+        startRecording();
     }
 }
 
