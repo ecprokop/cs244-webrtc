@@ -220,7 +220,7 @@ function download() {
     const a = document.createElement('a');
     a.style.display = 'none';
     a.href = url;
-    a.download = 'test.mp4';
+    a.download = 'test.webm';
     document.body.appendChild(a);
     a.click();
 }
