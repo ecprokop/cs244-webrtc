@@ -213,7 +213,7 @@ window.onbeforeunload = function() {
 };
 
 function download() {
-    const blob = new Blob(chunks, {type: 'video/mp4'});
+    const blob = new Blob(chunks, {type: 'video/webm'});
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.style.display = 'none';
@@ -235,7 +235,7 @@ function handleStop(event) {
 }
 
 function startRecording() {
-    var options = {mimeType: 'video/mp4'};
+    var options = {mimeType: 'video/webm'};
     chunks = [];
     try {
         mediaRecorder = new MediaRecorder(remoteStream, options);
