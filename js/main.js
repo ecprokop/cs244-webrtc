@@ -219,7 +219,7 @@ function resetTimeout() {
     if (typeof(timeout) !== 'undefined') {
         clearTimeout(timeout);
     }
-    timeout = setTimeout(download, 5000 * 2);
+    timeout = setTimeout(downloadAndStop, 5000 * 2);
 }
 
 function download() {
@@ -231,6 +231,12 @@ function download() {
     a.download = 'test.webm';
     document.body.appendChild(a);
     a.click();
+}
+
+function downloadAndStop() {
+    download();
+    mediaRecorder.onstop = function() {};
+    mediaRecorder.stop();
 }
 
 function handleDataAvailable(event) {
