@@ -11,20 +11,22 @@
 
 <h1>Realtime communication with WebRTC</h1>
 
+
 <div id="videos">
-    <video id="localVideo" autoplay muted></video>
-    <video id="remoteVideo" autoplay></video>
+    <video id="senderVideo" autoplay muted></video>
+    <video id="receiverVideo" autoplay></video>
 </div>
 
+
 <!--
-<video id="leftVideo" playsinline controls muted>
+<video id="senderVideo" playsinline controls muted>
     <source src="video/chrome.webm" type="video/webm"/>
     <source src="video/chrome.mp4" type="video/mp4"/>
     <p>This browser does not support the video element.</p>
 </video>
--->
 
-<video id="rightVideo" playsinline autoplay controls></video>
+<video id="receiverVideo" playsinline autoplay controls></video>
+-->
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>

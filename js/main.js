@@ -7,6 +7,7 @@ var localStream;
 var pc;
 var remoteStream;
 var turnReady;
+var pdStream;
 
 var pcConfig = {
     'iceServers': [{
@@ -19,6 +20,9 @@ var sdpConstraints = {
     offerToReceiveAudio: true,
     offerToReceiveVideo: true
 };
+
+var localVideo = document.querySelector('#senderVideo');
+var remoteVideo = document.querySelector('#receiverVideo');
 
 /////////////////////////////////////////////
 
@@ -88,10 +92,12 @@ socket.on('message', function(message) {
     }
 });
 
-////////////////////////////////////////////////////
+// socket.on('ready', function() {
+//     console.log('Ready');
+//     maybeStart();
+// });
 
-var localVideo = document.querySelector('#localVideo');
-var remoteVideo = document.querySelector('#remoteVideo');
+////////////////////////////////////////////////////
 
 navigator.mediaDevices.getUserMedia({
     audio: false,
@@ -129,10 +135,10 @@ function maybeStart() {
     if (!isStarted && typeof localStream !== 'undefined' && isChannelReady) {
         console.log('>>>>>> creating peer connection');
         createPeerConnection();
-        pc.addStream(localStream);
         isStarted = true;
         console.log('isInitiator', isInitiator);
         if (isInitiator) {
+            pc.addStream(localStream);
             doCall();
         }
     }
@@ -229,9 +235,11 @@ function requestTurn(turnURL) {
 }
 
 function handleRemoteStreamAdded(event) {
-    console.log('Remote stream added.');
-    remoteStream = event.stream;
-    remoteVideo.srcObject = remoteStream;
+    if (!isInitiator) {
+        console.log('Remote stream added.');
+        remoteStream = event.stream;
+        remoteVideo.srcObject = remoteStream;
+    }
 }
 
 function handleRemoteStreamRemoved(event) {
