@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc1bb870-3e66-4c8d-a2d8-ba38dca644f7" name="Default" comment="" />
+    <list default="true" id="bc1bb870-3e66-4c8d-a2d8-ba38dca644f7" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -55,10 +57,10 @@
           <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/main.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="550">
-                  <caret line="230" lean-forward="true" selection-start-line="230" selection-end-line="230" />
+                <state relative-caret-position="483">
+                  <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
                   <folding>
-                    <marker date="1559286195132" expanded="true" signature="4195:4394" ph="..." />
+                    <marker date="1559286884809" expanded="true" signature="4283:4482" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -88,8 +90,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="307">
-                  <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+                <state relative-caret-position="408">
+                  <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
                 </state>
               </provider>
             </entry>
@@ -122,9 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>localv</find>
-      <find>got user media</find>
-      <find>receiver</find>
       <find>docum</find>
       <find>isStarted = true</find>
       <find>remoteVideo</find>
@@ -152,6 +151,9 @@
       <find>onremo</find>
       <find>chunks.push</find>
       <find>startrecor</find>
+      <find>mp4</find>
+      <find>video/mp</find>
+      <find>video</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -262,12 +264,12 @@
       <updated>1559189062690</updated>
       <workItem from="1559189064912" duration="510000" />
       <workItem from="1559189599469" duration="7428000" />
-      <workItem from="1559258835038" duration="11043000" />
+      <workItem from="1559258835038" duration="11476000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18981000" />
+    <option name="totallyTimeSpent" value="19414000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-255" y="-1057" width="1920" height="1057" extended-state="6" />
@@ -354,7 +356,7 @@
         <state relative-caret-position="1125">
           <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
           <folding>
-            <marker date="1559286195132" expanded="true" signature="4195:4394" ph="..." />
+            <marker date="1559286884809" expanded="true" signature="4283:4482" ph="..." />
           </folding>
         </state>
       </provider>
@@ -418,13 +420,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/main-no-signal.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
@@ -432,6 +427,13 @@
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="33" column="57" selection-start-line="33" selection-start-column="57" selection-end-line="33" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -444,10 +446,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="230" lean-forward="true" selection-start-line="230" selection-end-line="230" />
+        <state relative-caret-position="483">
+          <caret line="92" column="43" selection-start-line="92" selection-start-column="43" selection-end-line="92" selection-end-column="43" />
           <folding>
-            <marker date="1559286195132" expanded="true" signature="4195:4394" ph="..." />
+            <marker date="1559286884809" expanded="true" signature="4283:4482" ph="..." />
           </folding>
         </state>
       </provider>

@@ -90,12 +90,14 @@ function maybeCreateStream() {
     }
     if (localVideo.captureStream) {
         pdStream = localVideo.captureStream();
+        pdStream.crossOrigin = 'anonymous';
         console.log('Captured stream from leftVideo with captureStream',
             pdStream);
         localVideo.play();
         maybeStart();
     } else if (localVideo.mozCaptureStream) {
         pdStream = localVideo.mozCaptureStream();
+        pdStream.crossOrigin = 'anonymous';
         console.log('Captured stream from leftVideo with mozCaptureStream()',
             pdStream);
         localVideo.play();
