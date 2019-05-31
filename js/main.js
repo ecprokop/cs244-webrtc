@@ -41,7 +41,8 @@ socket.on('created', function(room) {
     console.log('Created room ' + room);
     isServer = true;
     document.getElementById('whoami').innerHTML = "Server";
-    document.getElementById('senderContainer').removeChild();
+    var elem = document.getElementById('senderVideo');
+    elem.parentNode.removeChild(elem);
 });
 
 socket.on('full', function(room) {
