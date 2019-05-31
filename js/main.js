@@ -227,7 +227,10 @@ function download() {
 
 function handleDataAvailable(event) {
     if (event.data && event.data.size > 0) {
+        console.log("data is available");
         chunks.push(event.data);
+    } else {
+        console.log("data not available");
     }
 }
 
