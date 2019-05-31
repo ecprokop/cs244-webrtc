@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bc1bb870-3e66-4c8d-a2d8-ba38dca644f7" name="Default" comment="" />
+    <list default="true" id="bc1bb870-3e66-4c8d-a2d8-ba38dca644f7" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -29,7 +31,7 @@
             <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="312">
-                  <caret line="10365" column="4" selection-start-line="10365" selection-start-column="4" selection-end-line="10365" selection-end-column="4" />
+                  <caret line="15909" column="17" selection-start-line="15909" selection-start-column="17" selection-end-line="15909" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
@@ -55,10 +57,10 @@
           <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/main.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="508">
-                  <caret line="248" column="26" selection-start-line="248" selection-start-column="26" selection-end-line="248" selection-end-column="26" />
+                <state relative-caret-position="646">
+                  <caret line="247" column="26" lean-forward="true" selection-start-line="247" selection-start-column="26" selection-end-line="247" selection-end-column="26" />
                   <folding>
-                    <marker date="1559287240685" expanded="true" signature="4283:4482" ph="..." />
+                    <marker date="1559288113940" expanded="true" signature="4283:4482" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -122,7 +124,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>isStarted = true</find>
       <find>remoteVideo</find>
       <find>getusermedia</find>
       <find>l</find>
@@ -152,6 +153,7 @@
       <find>video</find>
       <find>mimetype:</find>
       <find>mp4</find>
+      <find>'undefined</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -262,12 +264,12 @@
       <updated>1559189062690</updated>
       <workItem from="1559189064912" duration="510000" />
       <workItem from="1559189599469" duration="7428000" />
-      <workItem from="1559258835038" duration="11840000" />
+      <workItem from="1559258835038" duration="12393000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19778000" />
+    <option name="totallyTimeSpent" value="20331000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-255" y="-1057" width="1920" height="1057" extended-state="6" />
@@ -354,7 +356,7 @@
         <state relative-caret-position="1125">
           <caret line="75" column="26" selection-start-line="75" selection-start-column="26" selection-end-line="75" selection-end-column="26" />
           <folding>
-            <marker date="1559287240685" expanded="true" signature="4283:4482" ph="..." />
+            <marker date="1559288113940" expanded="true" signature="4283:4482" ph="..." />
           </folding>
         </state>
       </provider>
@@ -404,13 +406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="10365" column="4" selection-start-line="10365" selection-start-column="4" selection-end-line="10365" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/index-no-signal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="439">
@@ -442,12 +437,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="15909" column="17" selection-start-line="15909" selection-start-column="17" selection-end-line="15909" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="248" column="26" selection-start-line="248" selection-start-column="26" selection-end-line="248" selection-end-column="26" />
+        <state relative-caret-position="646">
+          <caret line="247" column="26" lean-forward="true" selection-start-line="247" selection-start-column="26" selection-end-line="247" selection-end-column="26" />
           <folding>
-            <marker date="1559287240685" expanded="true" signature="4283:4482" ph="..." />
+            <marker date="1559288113940" expanded="true" signature="4283:4482" ph="..." />
           </folding>
         </state>
       </provider>

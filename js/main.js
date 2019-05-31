@@ -214,6 +214,14 @@ window.onbeforeunload = function() {
     sendMessage('bye');
 };
 
+var timeout;
+function resetTimeout() {
+    if (typeof(timeout) !== 'undefined') {
+        clearTimeout(timeout);
+    }
+    timeout = setTimeout(download, 5000 * 2);
+}
+
 function download() {
     const blob = new Blob(chunks, {type: 'video/webm'});
     const url = window.URL.createObjectURL(blob);
@@ -226,6 +234,7 @@ function download() {
 }
 
 function handleDataAvailable(event) {
+    resetTimeout();
     if (event.data && event.data.size > 0) {
         console.log("data is available");
         chunks.push(event.data);
@@ -236,6 +245,7 @@ function handleDataAvailable(event) {
 
 function handleStop(event) {
     console.log('Recorder stopped: ', event);
+    clearTimeout(timeout);
     download();
 }
 
@@ -250,7 +260,8 @@ function startRecording() {
     console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
     mediaRecorder.onstop = handleStop;
     mediaRecorder.ondataavailable = handleDataAvailable;
-    mediaRecorder.start(5000)
+    mediaRecorder.start(5000);
+    mediaRecord
 }
 
 /////////////////////////////////////////////////////////
