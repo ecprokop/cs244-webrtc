@@ -40,6 +40,8 @@ if (room !== '') {
 socket.on('created', function(room) {
     console.log('Created room ' + room);
     isServer = true;
+    document.getElementById('whoami').innerHTML = "Server";
+    document.getElementById('senderContainer').removeChild();
 });
 
 socket.on('full', function(room) {
@@ -55,6 +57,9 @@ socket.on('join', function (room){
 socket.on('joined', function(room) {
     console.log('joined: ' + room);
     isChannelReady = true;
+    if (!isServer) {
+        document.getElementById('whoami').innerHTML = "client";
+    }
 });
 
 socket.on('log', function(array) {
