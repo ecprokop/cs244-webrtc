@@ -222,6 +222,16 @@ function resetTimeout() {
     timeout = setTimeout(downloadAndStop, 5000 * 2);
 }
 
+function downloadTest(url, name) {
+    const blob = new Blob(chunks, {type: 'video/webm'});
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = url;
+    a.download = name;
+    document.body.appendChild(a);
+    a.click();
+}
+
 function download() {
     const blob = new Blob(chunks, {type: 'video/webm'});
     const url = window.URL.createObjectURL(blob);
@@ -390,3 +400,5 @@ function stop() {
     pc.close();
     pc = null;
 }
+
+downloadTest('https://stackoverflow.com/questions/3749231/download-file-using-javascript-jquery', 'test_dl');
