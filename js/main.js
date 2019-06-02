@@ -267,7 +267,6 @@ function startRecording() {
     mediaRecorder.onstop = handleStop;
     mediaRecorder.ondataavailable = handleDataAvailable;
     mediaRecorder.start(5000);
-    mediaRecord
 }
 
 /////////////////////////////////////////////////////////
